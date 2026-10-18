@@ -1,0 +1,417 @@
+/* ============ 活动页（手机优先；也会单独当作分享落地页） ============ */
+.ep {
+  --ep-bg: #fbf8f1;
+  --ep-ink: #15171b;
+  --ep-ink-2: #4a4a4f;
+  --ep-ink-3: #7b7a75;
+  --ep-rule: #d8d3c4;
+  --ep-cyan: #0c7a8e;
+  --ep-red: #b5342a;
+
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 22px 20px 28px;
+  background: var(--ep-bg);
+  color: var(--ep-ink);
+  font-family: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.ep * {
+  box-sizing: border-box;
+}
+
+.ep-kicker {
+  margin: 0 0 10px;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ep-ink-3);
+}
+
+.ep-h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.24;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.ep-sub {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--ep-ink-2);
+}
+
+.ep-when-big {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 2px solid var(--ep-ink);
+  font-size: 19px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* 跨天活动的时间排成两行，「展至 11月22日」不会被断在「展 / 至」之间 */
+.ep-when-big.is-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ep-when-line {
+  display: block;
+}
+
+/* 关键事实 */
+.ep-facts {
+  margin: 16px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--ep-rule);
+}
+
+.ep-fact {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--ep-rule);
+}
+
+.ep-fact dt {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ep-ink-3);
+  padding-top: 4px;
+}
+
+.ep-fact dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ep-fact dd strong {
+  font-weight: 600;
+}
+
+.ep-fact-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--ep-ink-2);
+}
+
+.ep-link {
+  margin-left: 6px;
+  color: var(--ep-cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ep-body {
+  margin-top: 20px;
+}
+
+.ep-body h2 {
+  margin: 0 0 6px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  font-weight: 400;
+  color: var(--ep-ink-3);
+}
+
+.ep-body p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ep-ink-2);
+}
+
+/* 动作 */
+.ep-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.ep-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid var(--ep-ink);
+  background: transparent;
+  color: var(--ep-ink);
+  font-family: inherit;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ep-btn:hover {
+  background: #f0ebdd;
+}
+
+.ep-btn-main {
+  background: var(--ep-ink);
+  color: #fbf8f1;
+  border-color: var(--ep-ink);
+}
+
+.ep-btn-main:hover {
+  background: #000;
+}
+
+.ep-btn-ghost {
+  border-color: var(--ep-rule);
+  color: var(--ep-ink-2);
+}
+
+.ep-btn:focus-visible {
+  outline: 2px solid var(--ep-cyan);
+  outline-offset: 2px;
+}
+
+.ep-foot {
+  margin: 22px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--ep-rule);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--ep-ink-3);
+}
+
+.ep-done {
+  position: sticky;
+  bottom: 0;
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: var(--ep-ink);
+  color: #fbf8f1;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* 落地页上的「看原海报」 */
+.ep-source {
+  margin-top: 22px;
+  border-top: 1px solid var(--ep-rule);
+  padding-top: 12px;
+}
+
+.ep-source summary {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ep-cyan);
+  cursor: pointer;
+}
+
+.ep-source summary:focus-visible {
+  outline: 2px solid var(--ep-cyan);
+  outline-offset: 2px;
+}
+
+.ep-source img {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid var(--ep-rule);
+}
+
+.ep-source p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ep-ink-3);
+}
+
+/* ---------- 大字版 ---------- */
+.ep-large {
+  font-size: 22px;
+}
+
+.ep-large .ep-h1 {
+  font-size: 34px;
+}
+
+.ep-large .ep-sub {
+  font-size: 18px;
+}
+
+.ep-large .ep-when-big {
+  font-size: 24px;
+}
+
+.ep-large .ep-fact {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  padding: 14px 0;
+}
+
+.ep-large .ep-fact dt {
+  font-size: 12px;
+  padding-top: 0;
+}
+
+.ep-large .ep-fact dd {
+  font-size: 21px;
+}
+
+.ep-large .ep-fact-sub {
+  font-size: 18px;
+}
+
+.ep-large .ep-body p {
+  font-size: 20px;
+}
+
+.ep-large .ep-btn {
+  min-height: 54px;
+  font-size: 19px;
+}
+
+/* ---------- 简明版 ---------- */
+.ep-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 28px;
+}
+
+.ep-brief .ep-h1 {
+  font-size: 34px;
+}
+
+.ep-brief .ep-when-big {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 26px;
+  line-height: 1.35;
+}
+
+.ep-brief .ep-place-big {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.ep-brief .ep-price,
+.ep-brief .ep-signup {
+  margin: 0;
+  font-size: 18px;
+  color: var(--ep-ink-2);
+}
+
+.ep-brief .ep-actions {
+  margin-top: 8px;
+}
+
+/* ---------- 结构化（屏幕阅读器优先） ---------- */
+.ep-structured {
+  --ep-bg: #ffffff;
+  --ep-ink: #000000;
+  --ep-ink-2: #1a1a1a;
+  --ep-ink-3: #3d3d3d;
+  --ep-rule: #767676;
+  --ep-cyan: #0b4f8a;
+
+  font-family: 'Songti SC', 'Noto Serif SC', 'SimSun', serif;
+}
+
+.ep-structured .ep-h1 {
+  font-size: 28px;
+}
+
+.ep-structured .ep-lede {
+  margin: 12px 0 18px;
+  font-size: 15px;
+  color: var(--ep-ink-2);
+}
+
+.ep-dl {
+  margin: 0;
+}
+
+.ep-dl-row {
+  padding: 10px 0;
+  border-top: 1px solid var(--ep-rule);
+}
+
+.ep-dl-row:last-child {
+  border-bottom: 1px solid var(--ep-rule);
+}
+
+.ep-dl dt {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ep-dl dd {
+  margin: 4px 0 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.ep-structured .ep-btn {
+  min-height: 48px;
+  font-size: 17px;
+}
+
+.ep-structured .ep-foot {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* 单独打开分享链接时：整页居中，宽屏也不拉成一行一条 */
+.ep-standalone {
+  display: block;
+  min-height: 100dvh;
+}
+
+.ep-standalone .ep {
+  max-width: 620px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  box-shadow: 0 0 0 1px #d8d3c4;
+}
+
+@media (min-width: 861px) {
+  .ep-standalone {
+    padding: 24px 0;
+    background: #e8e4d8;
+  }
+
+  .ep-standalone .ep {
+    padding: 40px 44px 48px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ep * {
+    transition: none !important;
+  }
+}
+
+/* 没有时间时的日历说明：不要给一个点了没反应的按钮 */
+.ep-btn-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 2px solid var(--ep-amber, #8a5a00);
+  background: rgba(138, 90, 0, 0.07);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--ep-ink-2, #444);
+}

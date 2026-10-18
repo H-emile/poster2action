@@ -1,0 +1,427 @@
+/* 活海报：原图铺满，图上被圈过的地方都能点 */
+
+.lp {
+  --paper: #e8e4d8;
+  --ink: #15171b;
+  --ink-2: #3c4048;
+  --ink-3: #6b6f78;
+  --cyan: #0c7a8e;
+  --rule: rgba(21, 23, 27, 0.16);
+  --sheet: #fbfaf6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+}
+
+/* 顶栏：一条细边，不抢海报 */
+.lp-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 11px;
+  background: rgba(232, 228, 216, 0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px dashed var(--rule);
+}
+
+.lp-bar-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.lp-title {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lp-when {
+  margin: 2px 0 0;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.lp-bar-actions {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+.lp-btn {
+  padding: 8px 11px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.lp-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.lp-btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.lp-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lp-btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.lp-btn-solid:hover:not(:disabled) {
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.lp-btn-quiet {
+  border-color: var(--rule);
+  color: var(--ink-2);
+  font-size: 11px;
+  padding: 7px 9px;
+}
+
+.lp-btn-line {
+  border-color: var(--rule);
+  font-size: 12px;
+}
+
+/* 主区：海报本体 */
+.lp-plate {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 10px 8px 4px;
+  background: #12141a;
+}
+
+.lp-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: calc(100vh - 190px);
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.lp-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+.lp-spot {
+  position: absolute;
+  padding: 0;
+  border: 1px dashed rgba(12, 122, 142, 0.55);
+  background: rgba(12, 122, 142, 0.04);
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.lp-spot:hover,
+.lp-spot:focus-visible {
+  background: rgba(12, 122, 142, 0.14);
+  border-color: var(--cyan);
+  border-style: solid;
+}
+
+.lp-spot.is-open {
+  border: 2px solid var(--cyan);
+  background: rgba(12, 122, 142, 0.18);
+}
+
+.lp-spot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -3px;
+}
+
+/* 编号角标：压在框外右上，不挡海报上的字 */
+.lp-spot-idx {
+  position: absolute;
+  right: -1px;
+  bottom: 100%;
+  margin-bottom: 1px;
+  padding: 0 3px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 8.5px;
+  line-height: 1.4;
+  opacity: 0.55;
+}
+
+.lp-spot:hover .lp-spot-idx,
+.lp-spot.is-open .lp-spot-idx {
+  opacity: 1;
+}
+
+.lp-spot-tag {
+  position: absolute;
+  left: -2px;
+  bottom: 100%;
+  margin-bottom: 1px;
+  padding: 0 4px;
+  background: var(--cyan);
+  color: #fff;
+  font-size: 8.5px;
+  line-height: 1.5;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 140ms ease, transform 140ms ease;
+  pointer-events: none;
+}
+
+.lp-spot:hover .lp-spot-tag,
+.lp-spot:focus-visible .lp-spot-tag,
+.lp-spot.is-open .lp-spot-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lp-hint {
+  margin: 0;
+  padding: 9px 14px 14px;
+  background: var(--paper);
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  border-top: 1px solid var(--rule);
+}
+
+/* 原图没跟过来（分享链接不带图） */
+.lp-noposter {
+  flex: 1;
+  padding: 22px 18px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.lp-noposter-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.lp-noposter-list {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.lp-noposter-list em {
+  font-style: normal;
+  color: var(--ink-3);
+}
+
+/* 放在手机预览里：抽屉不外溢 */
+.lp-inline {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.lp-inline .lp-backdrop {
+  position: absolute;
+}
+
+.lp-inline .lp-plate {
+  overflow: auto;
+}
+
+.lp-inline .lp-canvas {
+  max-height: none;
+}
+
+/* 手机预览里的抽屉跟着手机框走，按钮不能被裁掉 */
+.lp-inline .lp-sheet {
+  max-height: calc(100% - 10px);
+  border-radius: 0;
+}
+
+/* 第一次看到活海报的人需要一句说明 */
+.lp-hint {
+  margin: 0;
+  padding: 7px 14px;
+  background: #1b1e26;
+  color: #cfd8dd;
+  font-size: 11.5px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.lp-hint b {
+  color: #7fd3e3;
+  font-weight: 600;
+}
+
+.lp-inline .lp-hint {
+  font-size: 10.5px;
+  padding: 6px 8px;
+}
+
+/* 抽屉 */
+.lp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(10, 12, 16, 0.62);
+  padding: 0;
+}
+
+.lp-sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--sheet);
+  border-top: 3px solid var(--cyan);
+  padding: 12px 14px 16px;
+  box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.3);
+  animation: lp-rise 180ms ease-out;
+}
+
+@keyframes lp-rise {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+.lp-sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.lp-sheet-idx {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+}
+
+.lp-sheet-label {
+  flex: 1;
+  font-size: 15px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lp-close {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.lp-close:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.lp-close:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* 放大：只把 background-size 撑大，框里的那块正好铺满 */
+.lp-crop {
+  width: 100%;
+  max-height: 46vh;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border: 1px solid var(--rule);
+}
+
+.lp-sheet-text {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.85;
+  word-break: break-word;
+}
+
+.lp-sheet-text.is-empty {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.lp-sheet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.lp-why {
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.7;
+  align-self: center;
+}
+
+@media (max-width: 560px) {
+  .lp-title {
+    font-size: 14px;
+  }
+
+  .lp-canvas {
+    max-height: none;
+  }
+
+  .lp-btn {
+    padding: 10px 12px;
+  }
+
+  .lp-spot-tag {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-sheet,
+  .lp-btn,
+  .lp-spot,
+  .lp-spot-tag {
+    animation: none;
+    transition: none;
+  }
+}

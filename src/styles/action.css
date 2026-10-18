@@ -1,0 +1,515 @@
+/* ================= 行动页（校样台的第三屏） ================= */
+.av {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+}
+
+.av-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 26px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--card);
+}
+
+.av-back {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cyan);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.av-back:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.av-head h2 {
+  margin: 8px 0 0;
+  font-family: 'Songti SC', 'Noto Serif SC', 'SimSun', serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.av-head p {
+  max-width: 58ch;
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.av-status {
+  flex: none;
+  padding: 7px 10px;
+  border: 1px solid var(--rule);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+.av-status.is-warn {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: #fdf6e6;
+}
+
+.av-status.is-ok {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.av-status .sep {
+  margin: 0 5px;
+  color: var(--rule);
+}
+
+.av-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr) 360px;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* ---- 左：来源 ---- */
+.av-source {
+  padding: 16px 18px 24px;
+  border-right: 1px solid var(--rule);
+  overflow-y: auto;
+}
+
+.av-h3 {
+  margin: 0 0 10px;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.av-poster {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: #fff;
+  box-shadow: 0 6px 18px -12px rgba(21, 23, 27, 0.7);
+}
+
+.av-src-note {
+  margin: 10px 0 14px;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.av-src-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.av-src-list li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.av-src-list .mono {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  padding-top: 2px;
+}
+
+.av-caution {
+  margin: 14px 0 0;
+  padding: 10px 11px;
+  border-left: 2px solid var(--amber);
+  background: #fdf6e6;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #6b4700;
+}
+
+/* ---- 中：手机 ---- */
+.av-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px 24px;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 50% 0, rgba(12, 122, 142, 0.06), transparent 60%),
+    var(--paper);
+}
+
+.av-modes {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--ink);
+  background: var(--card);
+}
+
+.av-mode {
+  padding: 7px 13px;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  background: none;
+  font-size: 12px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.av-mode:last-child {
+  border-right: 0;
+}
+
+.av-mode:hover {
+  background: var(--card-2);
+}
+
+.av-mode.is-on {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.av-mode:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+
+.av-mode-hint {
+  margin: 0;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  text-align: center;
+  min-height: 14px;
+}
+
+.phone-shell {
+  position: relative;
+  width: 390px;
+  max-width: 100%;
+  height: 700px;
+  padding: 10px;
+  border: 12px solid #1b1d21;
+  border-radius: 34px;
+  background: #1b1d21;
+  box-shadow:
+    0 30px 60px -34px rgba(21, 23, 27, 0.85),
+    inset 0 0 0 1px #33363c;
+  flex: none;
+}
+
+.phone-notch {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 18px;
+  border-radius: 0 0 12px 12px;
+  background: #1b1d21;
+  z-index: 3;
+}
+
+.phone-body {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 22px;
+  background: #fbf8f1;
+  scrollbar-width: thin;
+}
+
+.av-phone-note {
+  max-width: 380px;
+  margin: 0;
+  font-size: 9.5px;
+  line-height: 1.7;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ---- 右：发布 ---- */
+.av-share {
+  padding: 16px 18px 26px;
+  border-left: 1px solid var(--rule);
+  overflow-y: auto;
+}
+
+.av-label {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+.av-url-row {
+  display: flex;
+  border: 1px solid var(--ink);
+  background: var(--card);
+}
+
+.av-url {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 8px;
+  border: 0;
+  background: none;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--ink-2);
+}
+
+.av-url:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+.av-mini {
+  flex: none;
+  padding: 0 10px;
+  border: 0;
+  border-left: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.av-fit {
+  margin: 6px 0 0;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+
+.av-fit.is-bad {
+  color: var(--red);
+}
+
+.av-qr {
+  margin-top: 14px;
+  padding: 10px;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  text-align: center;
+}
+
+.av-qr canvas {
+  display: block;
+  width: 216px;
+  height: 216px;
+  max-width: 100%;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+
+.av-qr-note {
+  margin: 8px 0 0;
+  font-size: 9px;
+  line-height: 1.7;
+  color: var(--ink-3);
+  text-align: left;
+}
+
+.av-qr-err {
+  margin: 0;
+  padding: 24px 8px;
+  font-size: 10px;
+  color: var(--red);
+}
+
+.av-actions {
+  display: grid;
+  gap: 0;
+  margin-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.av-act {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.av-act:hover {
+  background: var(--card-2);
+}
+
+.av-act:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+.av-act .mono {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+.av-maps {
+  margin-top: 18px;
+}
+
+.av-maps-q {
+  margin: 0 0 8px;
+  font-size: 9.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  word-break: break-all;
+}
+
+.av-maps ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.av-maps li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5px;
+}
+
+.av-maps a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.av-maps .mono {
+  font-size: 9px;
+  color: var(--ink-3);
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 1240px) {
+  .av-grid {
+    grid-template-columns: 220px minmax(0, 1fr) 320px;
+  }
+
+  .phone-shell {
+    height: 640px;
+    width: 360px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .av {
+    overflow: visible;
+  }
+
+  .av-head {
+    flex-wrap: wrap;
+    padding: 14px 16px;
+  }
+
+  .av-grid {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  /* 手机上先看这一页，再看发出去的东西，最后才是出处 */
+  .av-phone {
+    order: -1;
+  }
+
+  .av-share {
+    order: 1;
+  }
+
+  .av-source {
+    order: 2;
+  }
+
+  .av-phone {
+    padding: 14px 10px 20px;
+    overflow: visible;
+  }
+
+  .av-source,
+  .av-share {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    padding: 16px;
+    overflow: visible;
+  }
+
+  .av-poster {
+    max-width: 320px;
+  }
+
+  .phone-shell {
+    width: 390px;
+    height: 660px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* 出处海报在手机上别占掉整屏 */
+  .av-poster {
+    max-height: 210px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .av-source-note {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .phone-shell {
+    width: 100%;
+    height: 620px;
+    border-width: 9px;
+    border-radius: 28px;
+  }
+
+  .av-mode {
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+}

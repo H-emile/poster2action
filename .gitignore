@@ -1,0 +1,17 @@
+node_modules
+dist
+.tmp
+.secrets
+.env.local
+
+# 本机 OCR 的静态资源（约 37MB 二进制）：npm run ocr:assets 重新拉取
+public/tesseract/
+public/tessdata/
+
+# 编辑器 / 系统
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 本地 npm 缓存（沙箱里 cache 必须放工作区）
+.npm-cache/
