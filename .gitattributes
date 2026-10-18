@@ -1,0 +1,3 @@
+# 本机 OCR 的静态资源是二进制/压缩包，别让 git 改行尾
+public/tessdata/* binary
+public/tesseract/* binary

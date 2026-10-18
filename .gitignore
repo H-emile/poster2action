@@ -4,9 +4,9 @@ dist
 .secrets
 .env.local
 
-# 本机 OCR 的静态资源（约 37MB 二进制）：npm run ocr:assets 重新拉取
-public/tesseract/
-public/tessdata/
+# 本机 OCR 的静态资源已随仓库提供（约 33MB，见 README）；不想占仓库体积时删掉这两行
+# public/tesseract/
+# public/tessdata/
 
 # 编辑器 / 系统
 .vscode/
